@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Start Caliopen service for development purpose.
+# Refer to README file for further information
+
+DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WEB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../web" && pwd )"
+VENV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../venv" && pwd )"
+
+echo "Activate virtualenv"
+source ${VENV_DIR}/bin/activate
+
+
+echo "Start fig services in docker"
+fig -f "${DEV_DIR}/fig.yml" up -d redis cassandra elasticsearch rabbitmq
+
+
+echo "Start server"
+pserve "${WEB_DIR}/development.ini.sample"

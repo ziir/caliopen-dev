@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+
+echo "This is the install script for development only"
+echo "Report to README for other environment installation"
+
+
+CALIOPEN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../.." && pwd )"
+
+
+# Clone dependencies
+[[ -d "${CALIOPEN_DIR}/web" ]] || git clone https://github.com/CaliOpen/caliopen.web.git "${CALIOPEN_DIR}/web"
+[[ -d "${CALIOPEN_DIR}/config" ]] || git clone https://github.com/CaliOpen/caliopen.config.git "${CALIOPEN_DIR}/config"
+[[ -d "${CALIOPEN_DIR}/core" ]] || git clone https://github.com/CaliOpen/caliopen.core.git "${CALIOPEN_DIR}/core"
+[[ -d "${CALIOPEN_DIR}/messaging" ]] || git clone https://github.com/CaliOpen/caliopen.messaging.git "${CALIOPEN_DIR}/messaging"
+[[ -d "${CALIOPEN_DIR}/smtp" ]] || git clone https://github.com/CaliOpen/caliopen.smtp.git "${CALIOPEN_DIR}/smtp"
+[[ -d "${CALIOPEN_DIR}/storage" ]] || git clone https://github.com/CaliOpen/caliopen.storage.git "${CALIOPEN_DIR}/storage"
+[[ -d "${CALIOPEN_DIR}/api" ]] || git clone https://github.com/CaliOpen/caliopen.api.git "${CALIOPEN_DIR}/api"
+[[ -d "${CALIOPEN_DIR}/cli" ]] || git clone https://github.com/CaliOpen/caliopen.cli.git "${CALIOPEN_DIR}/cli"
+[[ -d "${CALIOPEN_DIR}/caliopen.ng" ]] || git clone https://github.com/CaliOpen/caliopen.ng.git "${CALIOPEN_DIR}/caliopen.ng"
+
+
+# install packages
+# TODO This should be removed as soon as the service is fully executed through fig.
+# aptitude install python python-dev python-virtualenv libffi-dev
+
+
+# create and activate venv
+# TODO This should be removed as soon as the service is fully executed through fig.
+[[ -d "${CALIOPEN_DIR}/venv" ]] || virtualenv venv
+source "${CALIOPEN_DIR}/venv/bin/activate"
+# setup all deps in venv
+for d in config core messaging smtp storage api web cli
+do
+
+  cd "${CALIOPEN_DIR}/${d}"
+  python setup.py develop
+
+  if [ -e requirements.txt ] ; then
+    pip install -r requirements.txt
+  fi
+
+done
+
+# Install fig in virtualenv
+[[ -z "$(which fig)" ]] || pip install fig
+
+
+# Create fig data folders
+cd "${CALIOPEN_DIR}"
+[[ -d "${CALIOPEN_DIR}/.fig/cassandra/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/cassandra/data"
+[[ -d "${CALIOPEN_DIR}/.fig/elasticsearch/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/elasticsearch/data"
+
+
+# And we're done
+echo "DONE"

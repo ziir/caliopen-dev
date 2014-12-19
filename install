@@ -27,7 +27,7 @@ CALIOPEN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 # create and activate venv
 # TODO This should be removed as soon as the service is fully executed through fig.
-[[ -d "${CALIOPEN_DIR}/venv" ]] || virtualenv venv
+[[ -d "${CALIOPEN_DIR}/venv" ]] || virtualenv "${CALIOPEN_DIR}/venv"
 source "${CALIOPEN_DIR}/venv/bin/activate"
 # setup all deps in venv
 for d in config core messaging smtp storage api web cli

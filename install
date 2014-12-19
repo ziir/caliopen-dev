@@ -43,7 +43,7 @@ do
 done
 
 # Install fig in virtualenv
-[[ -z "$(which fig)" ]] || pip install fig
+[[ -z "$(which fig)" ]] && pip install fig
 
 
 # Create fig data folders

@@ -94,14 +94,16 @@ npm:
     working_dir: /usr/local/gandi.web
     dns:
         - 217.70.181.80
-    volumes_from: node
+    volumes_from:
+        - node
     entrypoint: npm
 
 # ### Grunt container
 grunt:
     image: "node:0.10"
     working_dir: /usr/local/gandi.web
-    volumes_from: node
+    volumes_from:
+        - node
     entrypoint: ./node_modules/.bin/grunt
 
 # ### Node environment

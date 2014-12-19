@@ -5,7 +5,7 @@ echo "This is the install script for development only"
 echo "Report to README for other environment installation"
 
 
-CALIOPEN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../.." && pwd )"
+CALIOPEN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 
 # Clone dependencies

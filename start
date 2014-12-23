@@ -2,9 +2,11 @@
 # Start Caliopen service for development purpose.
 # Refer to README file for further information
 
+source common.sh
+
 DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WEB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../web" && pwd )"
-VENV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../venv" && pwd )"
+WEB_DIR="${CALIOPEN_DIR}/web"
+VENV_DIR="${CALIOPEN_DIR}/venv"
 
 echo "Activate virtualenv"
 source ${VENV_DIR}/bin/activate

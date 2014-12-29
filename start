@@ -9,12 +9,15 @@ WEB_DIR="${CALIOPEN_DIR}/web"
 VENV_DIR="${CALIOPEN_DIR}/venv"
 
 echo "Activate virtualenv"
-source ${VENV_DIR}/bin/activate
+source "${CALIOPEN_ROOT_DIR}/venv/bin/activate"
 
 
 echo "Start fig services in docker"
+# A fixed Current Working Directory is required to ensure
+# data directories are always the same.
+cd "${DEV_DIR}"
 fig -f "${DEV_DIR}/fig.yml" up -d redis cassandra elasticsearch rabbitmq
 
 
 echo "Start server"
-pserve "${WEB_DIR}/development.ini.sample"
+pserve "${CALIOPEN_ROOT_DIR}/web/development.ini.sample"

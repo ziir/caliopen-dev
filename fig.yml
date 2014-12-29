@@ -1,3 +1,4 @@
+# Note that all path are relative to fig file
 #web:
 #    build: ../web
 #    volumes:

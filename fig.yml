@@ -1,3 +1,4 @@
+# Note that all path are relative to fig file
 #web:
 #    build: ../web
 #    volumes:
@@ -41,7 +42,7 @@ cassandra:
     ports:
         - "9160:9160"
     volumes:
-        - ../.fig/cassndra/data:/data
+        - ../.fig/cassandra/data:/data
 
 # ### Elasticsearch
 #

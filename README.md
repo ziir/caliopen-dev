@@ -56,7 +56,7 @@ related git remote and create a pull request.
 > ```
 
 **Note** that you are encouraged to use `features/xxx` branch name style and try
-to describe as eplicitly as possible what you're trying to achieve.
+to describe as explicitly as possible what you're trying to achieve.
 
 ## Launch Tests
 
@@ -64,4 +64,32 @@ to describe as eplicitly as possible what you're trying to achieve.
 
 ## Load fixtures
 
-> To be defined
+Some fixtures data are available for a quickstart.
+
+To load fixtures ensure containers are started, then run:
+
+``` sh
+./bin/load-fixtures
+```
+This will create all required data.
+
+### Reset data
+
+Importing data is not idempotent at the time of writting, to clean existing
+data, ensure containers are stopped, and run the following fron caliopen root
+directory:
+
+``` sh
+rm -rf .fig/{cassandra,elasticsearch}/*
+```
+
+### Available Accounts
+
+> **Note** that in the following, `[at)` should be replaced with `@`
+
+* username `julien.muetton[at)gandi.net`, password `123456`.
+
+Some mails from the CaliOpen Development mailing list are inserted too.
+
+> Feel free to add more fixtures, but be aware that any information in
+> contributed fixtures are public

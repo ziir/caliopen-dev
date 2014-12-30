@@ -42,7 +42,7 @@ cassandra:
     ports:
         - "9160:9160"
     volumes:
-        - ../.fig/cassandra/data:/data
+        - ../.fig/cassandra/data:/var/lib/cassandra
 
 # ### Elasticsearch
 #

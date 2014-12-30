@@ -64,4 +64,19 @@ to describe as explicitly as possible what you're trying to achieve.
 
 ## Load fixtures
 
-> To be defined
+Some fixtures data are available for a quickstart.
+
+To load fixtures, run:
+
+``` sh
+./bin/load-fixtures
+```
+
+> **Note** that in the following, `[at)` should be replaced with `@`
+
+This will create a new user `julien.muetton[at)gandi.net` with password `123456`.
+
+Some mails from the CaliOpen Development mailing list are inserted too.
+
+> Feel free to add more fixtures, but be aware that any information in
+> contributed fixtures are public

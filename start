@@ -21,3 +21,6 @@ fig -f "${DEV_DIR}/fig.yml" up -d redis cassandra elasticsearch rabbitmq
 
 echo "Start server"
 pserve "${CALIOPEN_ROOT_DIR}/web/development.ini.sample"
+
+echo "stop fig containers"
+fig -f "${DEV_DIR}/fig.yml" stop

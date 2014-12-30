@@ -2,14 +2,15 @@
 # Start Caliopen service for development purpose.
 # Refer to README file for further information
 
-source common.sh
-
 DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source "${DEV_DIR}/common.sh"
+
 WEB_DIR="${CALIOPEN_DIR}/web"
 VENV_DIR="${CALIOPEN_DIR}/venv"
 
 echo "Activate virtualenv"
-source "${CALIOPEN_ROOT_DIR}/venv/bin/activate"
+source "${CALIOPEN_DIR}/venv/bin/activate"
 
 
 echo "Start fig services in docker"
@@ -20,7 +21,7 @@ fig -f "${DEV_DIR}/fig.yml" up -d redis cassandra elasticsearch rabbitmq
 
 
 echo "Start server"
-pserve --reload "${CALIOPEN_ROOT_DIR}/web/development.ini.sample"
+pserve --reload "${CALIOPEN_DIR}/web/development.ini.sample"
 
 echo "stop fig containers"
 fig -f "${DEV_DIR}/fig.yml" stop

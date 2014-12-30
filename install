@@ -4,7 +4,8 @@
 echo "This is the install script for development only"
 echo "Report to README for other environment installation"
 
-source common.sh
+DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${DEV_DIR}/common.sh"
 
 # Clone dependencies
 for c in ${CALIOPEN_COMPONENTS}

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-CALIOPEN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${DEV_DIR}/common.sh"
 
 [ -z "$VIRTUAL_ENV" ] && source "$CALIOPEN_DIR/venv/bin/activate"
 

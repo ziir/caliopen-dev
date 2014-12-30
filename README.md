@@ -66,15 +66,28 @@ to describe as explicitly as possible what you're trying to achieve.
 
 Some fixtures data are available for a quickstart.
 
-To load fixtures, run:
+To load fixtures ensure containers are started, then run:
 
 ``` sh
 ./bin/load-fixtures
 ```
+This will create all required data.
+
+### Reset data
+
+Importing data is not idempotent at the time of writting, to clean existing
+data, ensure containers are stopped, and run the following fron caliopen root
+directory:
+
+``` sh
+rm -rf .fig/{cassandra,elasticsearch}/*
+```
+
+### Available Accounts
 
 > **Note** that in the following, `[at)` should be replaced with `@`
 
-This will create a new user `julien.muetton[at)gandi.net` with password `123456`.
+* username `julien.muetton[at)gandi.net`, password `123456`.
 
 Some mails from the CaliOpen Development mailing list are inserted too.
 

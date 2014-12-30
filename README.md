@@ -56,7 +56,7 @@ related git remote and create a pull request.
 > ```
 
 **Note** that you are encouraged to use `features/xxx` branch name style and try
-to describe as eplicitly as possible what you're trying to achieve.
+to describe as explicitly as possible what you're trying to achieve.
 
 ## Launch Tests
 

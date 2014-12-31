@@ -9,4 +9,4 @@ before_script:
   - "mkdir caliopen"
   - "echo \"LOCAL_DIR=\\\"$(pwd)/caliopen\\\"\" > caliopen.env"
 # Test the install exits with 0 status
-script: "./bin/install"
+script: "./install"

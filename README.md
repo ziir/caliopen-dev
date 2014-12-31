@@ -1,5 +1,8 @@
 # CaliOpen Development Environment And Toolbelt
 
+[![Build
+Status](https://travis-ci.org/CaliOpen/caliopen-dev.svg?branch=master)](https://travis-ci.org/CaliOpen/caliopen-dev)
+
 We use [fig](http://fig.sh) to run [CaliOpen](http://caliopen.org) for
 develoment purpose.
 

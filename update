@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+echo "Update all CaliOpen related repositories for a typical development"
+echo "install."
+
+DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${DEV_DIR}/common.sh"
+
+CURRDIR="$(pwd)"
+
+
+for c in bin ${CALIOPEN_COMPONENTS}
+do
+    echo "-------------------------"
+    echo "Updating ${c}"
+    echo ""
+
+    # Go to component directory
+    cd "${CALIOPEN_DIR}/${c}"
+
+    # get current branch and state
+    declare BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    declare DIRTY=$(git status --porcelain | wc -l)
+
+    # stash if index is dirty
+    [[ "0" = "${DIRTY}" ]] || git stash
+
+    # checkout master
+    [[ "master" = "${BRANCH}" ]] || git checkout master
+
+    # pull --rebase
+    git pull --rebase origin master
+
+    # checkout former branch if any
+    [[ "master" = "${BRANCH}" ]] || git checkout "${BRANCH}"
+
+    # And restore previous status
+    [[ "0" = "${DIRTY}" ]] || git stash pop
+
+    echo ""
+done
+
+cd ${CURRDIR}

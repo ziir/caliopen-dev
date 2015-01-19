@@ -65,6 +65,15 @@ to describe as explicitly as possible what you're trying to achieve.
 
 > To be defined
 
+## Update Code Base
+
+To update hte whole codebase in bulk, just run `./bin/update`.
+
+Note that only `master` branch will be rebased upon server version.
+
+If you have local modifications, they will be kept, so be confident and update
+often !
+
 ## Load fixtures
 
 Some fixtures data are available for a quickstart.

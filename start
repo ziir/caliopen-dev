@@ -13,6 +13,12 @@ echo "Activate virtualenv"
 source "${CALIOPEN_DIR}/venv/bin/activate"
 
 
+# Create fig data folders
+cd "${CALIOPEN_DIR}"
+[[ -d "${CALIOPEN_DIR}/.fig/cassandra/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/cassandra/data"
+[[ -d "${CALIOPEN_DIR}/.fig/elasticsearch/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/elasticsearch/data"
+
+
 echo "Start fig services in docker"
 # A fixed Current Working Directory is required to ensure
 # data directories are always the same.

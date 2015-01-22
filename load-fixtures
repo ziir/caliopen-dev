@@ -5,6 +5,6 @@ source "${DEV_DIR}/common.sh"
 
 [ -z "$VIRTUAL_ENV" ] && source "$CALIOPEN_DIR/venv/bin/activate"
 
-caliopen -f cli/caliopen.yaml.template setup
-caliopen -f cli/caliopen.yaml.template create_user -e julien.muetton@gandi.net -g Julien -f Muetton -p 123456
-caliopen -f cli/caliopen.yaml.template import -e julien.muetton@gandi.net -f mbox -p "${CALIOPEN_DIR}/bin/fixtures/julien.muetton@gandi.net/mbox/"
+caliopen -f ${CALIOPEN_DIR}/cli/caliopen.yaml.template setup
+caliopen -f ${CALIOPEN_DIR}/cli/caliopen.yaml.template create_user -e julien.muetton@gandi.net -g Julien -f Muetton -p 123456
+caliopen -f ${CALIOPEN_DIR}/cli/caliopen.yaml.template import -e julien.muetton@gandi.net -f mbox -p "${CALIOPEN_DIR}/bin/fixtures/julien.muetton@gandi.net/mbox/"

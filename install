@@ -46,6 +46,16 @@ cd "${CALIOPEN_DIR}"
 [[ -d "${CALIOPEN_DIR}/.fig/cassandra/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/cassandra/data"
 [[ -d "${CALIOPEN_DIR}/.fig/elasticsearch/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/elasticsearch/data"
 
+# Install frontend
+# ================
+cd "${CALIOPEN_DIR}/frontend"
+# Use fig to launch npm if no local npm is found
+if [ -z "$(which npm)" ] ; then
+    alias npm="fig -f ${DEV_DIR}/fig.yml run npm"
+fi
+./bin/install
+declare ret="$?"
+[[ "0" -eq "$ret" ]] || exit $ret
 
 # And we're done
 echo "DONE"

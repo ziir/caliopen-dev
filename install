@@ -23,7 +23,7 @@ done
 
 # create and activate venv
 # TODO This should be removed as soon as the service is fully executed through fig.
-[[ -d "${CALIOPEN_DIR}/venv" ]] || virtualenv "${CALIOPEN_DIR}/venv"
+[[ -d "${CALIOPEN_DIR}/venv" ]] || virtualenv ${VENV_OPTS} "${CALIOPEN_DIR}/venv"
 source "${CALIOPEN_DIR}/venv/bin/activate"
 # setup all deps in venv
 for d in ${CALIOPEN_COMPONENTS}

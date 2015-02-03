@@ -93,16 +93,16 @@ cassandracli:
 npm:
     image: "node:0.10"
     working_dir: /usr/local/caliopen/frontend
-    volumes_from:
-        - node
+    volumes:
+        - ../:/usr/local/caliopen
     entrypoint: npm
 
 # ### Grunt container
 ember:
     image: "node:0.10"
     working_dir: /usr/local/caliopen/frontend
-    volumes_from:
-        - node
+    volumes:
+        - ../:/usr/local/caliopen
     entrypoint: ./node_modules/.bin/ember
 
 # ### Node environment

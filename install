@@ -53,8 +53,14 @@ cd "${CALIOPEN_DIR}/frontend"
 command -v npm >/dev/null 2>&1 || supercharge_npm=1
 if [[ ! -z "$supercharge_npm" ]]
 then
+    function node {
+        fig -f ${DEV_DIR}/fig.yml run node $@
+    }
     function npm {
         fig -f ${DEV_DIR}/fig.yml run npm $@
+    }
+    function ember {
+        fig -f ${DEV_DIR}/fig.yml run ember $@
     }
 fi
 source ./bin/install

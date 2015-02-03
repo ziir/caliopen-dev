@@ -50,10 +50,8 @@ cd "${CALIOPEN_DIR}"
 # ================
 cd "${CALIOPEN_DIR}/frontend"
 # Use fig to launch npm if no local npm is found
-if [ -z "$(which npm)" ] ; then
-    alias npm="fig -f ${DEV_DIR}/fig.yml run npm"
-fi
-./bin/install
+[[ command -v npm >/dev/null 2>&1 ]] || function npm { fig -f ${DEV_DIR}/fig.yml run npm $@ }
+source ./bin/install
 declare ret="$?"
 [[ "0" -eq "$ret" ]] || exit $ret
 

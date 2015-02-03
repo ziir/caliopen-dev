@@ -92,7 +92,7 @@ cassandracli:
 # Simply run `fig run npm run dev` to run in dev mode
 npm:
     image: "node:0.10"
-    working_dir: /usr/local/gandi.web
+    working_dir: /usr/local/caliopen/frontend
     dns:
         - 217.70.181.80
     volumes_from:
@@ -100,12 +100,12 @@ npm:
     entrypoint: npm
 
 # ### Grunt container
-grunt:
+ember:
     image: "node:0.10"
-    working_dir: /usr/local/gandi.web
+    working_dir: /usr/local/caliopen/frontend
     volumes_from:
         - node
-    entrypoint: ./node_modules/.bin/grunt
+    entrypoint: ./node_modules/.bin/ember
 
 # ### Node environment
 #
@@ -113,6 +113,6 @@ grunt:
 # Simply run `fig run node my/js/file.js`
 node:
     image: "node:0.10"
-    working_dir: /usr/local/caliopen.ng
+    working_dir: /usr/local/caliopen/frontend
     volumes:
-        - ../caliopen.ng:/usr/local/caliopen.ng
+        - ../caliopen:/usr/local/caliopen

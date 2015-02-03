@@ -115,4 +115,4 @@ node:
     image: "node:0.10"
     working_dir: /usr/local/caliopen/frontend
     volumes:
-        - ../caliopen:/usr/local/caliopen
+        - ../:/usr/local/caliopen

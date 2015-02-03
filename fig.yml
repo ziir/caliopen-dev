@@ -93,8 +93,6 @@ cassandracli:
 npm:
     image: "node:0.10"
     working_dir: /usr/local/caliopen/frontend
-    dns:
-        - 217.70.181.80
     volumes_from:
         - node
     entrypoint: npm
@@ -116,3 +114,4 @@ node:
     working_dir: /usr/local/caliopen/frontend
     volumes:
         - ../:/usr/local/caliopen
+

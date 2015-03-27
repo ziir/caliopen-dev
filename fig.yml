@@ -40,6 +40,7 @@ rabbitmq:
 cassandra:
     image: spotify/cassandra
     ports:
+        - "9042:9042"
         - "9160:9160"
     volumes:
         - ../.fig/cassandra/data:/var/lib/cassandra

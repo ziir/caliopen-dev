@@ -7,7 +7,7 @@ if [ -f caliopen.env ]; then
 fi
 
 # All backends components
-CALIOPEN_COMPONENTS="config storage core api messaging smtp web cli frontend"
+CALIOPEN_COMPONENTS="base base.message api.base messaging smtp web cli frontend"
 
 # Default values that can be overidden in a cassandra.env file
 DEFAULT_BASE_URL="https://github.com/CaliOpen"

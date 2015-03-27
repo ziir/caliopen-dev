@@ -13,21 +13,21 @@ echo "Activate virtualenv"
 source "${CALIOPEN_DIR}/venv/bin/activate"
 
 
-# Create fig data folders
+# Create data folders
 cd "${CALIOPEN_DIR}"
-[[ -d "${CALIOPEN_DIR}/.fig/cassandra/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/cassandra/data"
-[[ -d "${CALIOPEN_DIR}/.fig/elasticsearch/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/elasticsearch/data"
+[[ -d "${CALIOPEN_DIR}/.data/cassandra/data" ]] || mkdir -p "${CALIOPEN_DIR}/.data/cassandra/data"
+[[ -d "${CALIOPEN_DIR}/.data/elasticsearch/data" ]] || mkdir -p "${CALIOPEN_DIR}/.data/elasticsearch/data"
 
 
-echo "Start fig services in docker"
+echo "Start containers"
 # A fixed Current Working Directory is required to ensure
 # data directories are always the same.
 cd "${DEV_DIR}"
-fig -f "${DEV_DIR}/fig.yml" up -d redis cassandra elasticsearch rabbitmq
+docker-compose -f "${DEV_DIR}/fig.yml" up -d redis cassandra elasticsearch rabbitmq
 
 
 echo "Start server"
 pserve --reload "${CALIOPEN_DIR}/web/development.ini.sample"
 
-echo "stop fig containers"
-fig -f "${DEV_DIR}/fig.yml" stop
+echo "stop containers"
+docker-compose -f "${DEV_DIR}/fig.yml" stop

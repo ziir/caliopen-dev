@@ -30,7 +30,7 @@ redis:
 #
 # Used as an event broker for async tasks
 rabbitmq:
-    image: dockerfile/rabbitmq
+    image: rabbitmq
     ports:
         - "5672:5672"
 

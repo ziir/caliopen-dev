@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${DEV_DIR}/common.sh"
+
+CURRDIR="$(pwd)"
+
+echo "Display the current installation status."
+
+for c in bin ${CALIOPEN_COMPONENTS}
+do
+    # Go to component directory
+    cd "${CALIOPEN_DIR}/${c}"
+    declare BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    declare DIRTY=$(git status --porcelain | wc -l)
+    declare STATUS=" "
+    [[ "0" = "${DIRTY}" ]] || STATUS="*"
+    printf " %s %-15s %-15s\n" "$STATUS" $c $BRANCH
+done
+
+cd ${CURRDIR}

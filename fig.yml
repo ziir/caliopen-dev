@@ -30,7 +30,7 @@ redis:
 #
 # Used as an event broker for async tasks
 rabbitmq:
-    image: dockerfile/rabbitmq
+    image: rabbitmq
     ports:
         - "5672:5672"
 
@@ -42,6 +42,7 @@ cassandra:
     ports:
         - "9042:9042"
         - "9160:9160"
+        - "7000:7000"
     volumes:
         - ../.data/cassandra/data:/var/lib/cassandra
 
@@ -49,7 +50,7 @@ cassandra:
 #
 # Used to index mail content and ensure great research performances.
 elasticsearch:
-    image: dockerfile/elasticsearch
+    image: elasticsearch
     ports:
         - "9200:9200"
     volumes:

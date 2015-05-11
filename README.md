@@ -3,7 +3,7 @@
 [![Build
 Status](https://travis-ci.org/CaliOpen/caliopen-dev.svg?branch=master)](https://travis-ci.org/CaliOpen/caliopen-dev)
 
-We use [fig](http://fig.sh) to run [CaliOpen](http://caliopen.org) for
+We use [docker-compose](http://docs.docker.com/compose/) to run [CaliOpen](https://caliopen.org) for
 develoment purpose.
 
 > Up to now, only external services are running in docker containers.
@@ -92,7 +92,7 @@ data, ensure containers are stopped, and run the following fron caliopen root
 directory:
 
 ``` sh
-rm -rf .fig/{cassandra,elasticsearch}/*
+rm -rf .data/{cassandra,elasticsearch}/*
 ```
 
 ### Available Accounts

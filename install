@@ -73,39 +73,34 @@ do
 
 done
 
-# install node dependencies using docker container
-command -v docker-compose >/dev/null 2>&1 && COMPOSE_CMD="docker-compose"
-[[ -z "${COMPOSE_CMD}" ]] && command -v fig >/dev/null 2>&1 && COMPOSE_CMD="fig"
-[[ -z "${COMPOSE_CMD}" ]] || COMPOSE_CMD="${COMPOSE_CMD} -f ${DEV_DIR}/fig.yml"
-
-if [[ -n "${COMPOSE_CMD}" ]]; then
-    function node {
-        $COMPOSE_CMD run node $@
-    }
-    function npm {
-        $COMPOSE_CMD run npm $@
-    }
-    function ember {
-        $COMPOSE_CMD run ember $@
-    }
-    function bower {
-        $COMPOSE_CMD run node ./node_modules/.bin/bower $@
-    }
-
-elif ! command -v npm >/dev/null 2>&1 ; then
-    echo "docker-compose, fig or npm are required to install mimosa"
-    exit 1
-fi
+# Install docker-compose in virtualenv
+[[ -z "$(which docker-compose)" ]] && pip install docker-compose
 
 
-# Create fig data folders
+# Create data folders
 cd "${CALIOPEN_DIR}"
-[[ -d "${CALIOPEN_DIR}/.fig/cassandra/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/cassandra/data"
-[[ -d "${CALIOPEN_DIR}/.fig/elasticsearch/data" ]] || mkdir -p "${CALIOPEN_DIR}/.fig/elasticsearch/data"
+[[ -d "${CALIOPEN_DIR}/.data/cassandra/data" ]] || mkdir -p "${CALIOPEN_DIR}/.data/cassandra/data"
+[[ -d "${CALIOPEN_DIR}/.data/elasticsearch/data" ]] || mkdir -p "${CALIOPEN_DIR}/.data/elasticsearch/data"
 
 # Install frontend
 # ================
 cd "${CALIOPEN_DIR}/frontend"
+
+# Use docker-compose to launch npm if no local npm is found
+command -v npm >/dev/null 2>&1 || supercharge_npm=1
+if [[ ! -z "$supercharge_npm" ]]
+then
+    function node {
+        docker-compose -f ${DEV_DIR}/fig.yml run node $@
+    }
+    function npm {
+        docker-compose -f ${DEV_DIR}/fig.yml run npm $@
+    }
+    function ember {
+        docker-compose -f ${DEV_DIR}/fig.yml run ember $@
+    }
+fi
+
 source ./bin/install
 declare ret="$?"
 [[ "0" -eq "$ret" ]] || exit $ret

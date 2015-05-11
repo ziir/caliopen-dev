@@ -38,21 +38,23 @@ rabbitmq:
 #
 # Cassandra is used as the reference storage for business data
 cassandra:
-    image: spotify/cassandra
+    image: abh1nav/cassandra
     ports:
+        - "9042:9042"
         - "9160:9160"
+        - "7000:7000"
     volumes:
-        - ../.fig/cassandra/data:/var/lib/cassandra
+        - ../.data/cassandra/data:/var/lib/cassandra
 
 # ### Elasticsearch
 #
 # Used to index mail content and ensure great research performances.
 elasticsearch:
-    image: dockerfile/elasticsearch
+    image: elasticsearch
     ports:
         - "9200:9200"
     volumes:
-        - ../.fig/elasticsearch/data:/data/data
+        - ../.data/elasticsearch/data:/data/data
 
 # Commands
 # --------
@@ -79,7 +81,7 @@ elasticsearch:
 #
 # `fig run cassandracli`
 cassandracli:
-    image: spotify/cassandra
+    image: abh1nav/cassandra
     links:
         - cassandra:cassandra.caliopen.dev
     entrypoint: 'cqlsh'

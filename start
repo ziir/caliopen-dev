@@ -12,6 +12,10 @@ VENV_DIR="${CALIOPEN_DIR}/venv"
 echo "Activate virtualenv"
 source "${CALIOPEN_DIR}/venv/bin/activate"
 
+command -v docker-compose >/dev/null 2>&1 && COMPOSE_CMD="docker-compose"
+[[ -z "${COMPOSE_CMD}" ]] && command -v fig >/dev/null 2>&1 && COMPOSE_CMD="fig"
+[[ -z "${COMPOSE_CMD}" ]] || COMPOSE_CMD="${COMPOSE_CMD} -f ${DEV_DIR}/fig.yml"
+
 
 # Create data folders
 cd "${CALIOPEN_DIR}"
@@ -23,11 +27,11 @@ echo "Start containers"
 # A fixed Current Working Directory is required to ensure
 # data directories are always the same.
 cd "${DEV_DIR}"
-docker-compose -f "${DEV_DIR}/fig.yml" up -d redis cassandra elasticsearch rabbitmq
+$COMPOSE_CMD up -d redis cassandra elasticsearch rabbitmq
 
 
 echo "Start server"
 pserve --reload "${CALIOPEN_DIR}/web/development.ini.sample"
 
 echo "stop containers"
-docker-compose -f "${DEV_DIR}/fig.yml" stop
+$COMPOSE_CMD stop

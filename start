@@ -12,10 +12,7 @@ VENV_DIR="${CALIOPEN_DIR}/venv"
 echo "Activate virtualenv"
 source "${CALIOPEN_DIR}/venv/bin/activate"
 
-command -v docker-compose >/dev/null 2>&1 && COMPOSE_CMD="docker-compose"
-[[ -z "${COMPOSE_CMD}" ]] && command -v fig >/dev/null 2>&1 && COMPOSE_CMD="fig"
-[[ -z "${COMPOSE_CMD}" ]] || COMPOSE_CMD="${COMPOSE_CMD} -f ${DEV_DIR}/fig.yml"
-
+COMPOSE_CMD="docker-compose"
 
 # Create data folders
 cd "${CALIOPEN_DIR}"

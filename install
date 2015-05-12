@@ -75,6 +75,7 @@ done
 
 # Install docker-compose in virtualenv
 [[ -z "$(which docker-compose)" ]] && pip install docker-compose
+COMPOSE_CMD="docker-compose"
 
 
 # Create data folders
@@ -91,13 +92,13 @@ command -v npm >/dev/null 2>&1 || supercharge_npm=1
 if [[ ! -z "$supercharge_npm" ]]
 then
     function node {
-        docker-compose -f ${DEV_DIR}/fig.yml run node $@
+        $COMPOSE_CMD run node $@
     }
     function npm {
-        docker-compose -f ${DEV_DIR}/fig.yml run npm $@
+        $COMPOSE_CMD run npm $@
     }
     function ember {
-        docker-compose -f ${DEV_DIR}/fig.yml run ember $@
+        $COMPOSE_CMD run ember $@
     }
 fi
 

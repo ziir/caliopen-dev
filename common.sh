@@ -10,18 +10,13 @@ fi
 CALIOPEN_COMPONENTS="base base.user base.message api.base api.user api.message messaging smtp web cli frontend"
 
 # Default values that can be overidden in a cassandra.env file
-DEFAULT_BASE_URL="git@github.com:CaliOpen"
+DEFAULT_BASE_URL="https://github.com/CaliOpen"
 DEFAULT_LOCAL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 
 # Set BASE_URL LOCAL_DIR
-if [[ "x${BASE_URL}" == "x" ]]; then
-    BASE_URL="${DEFAULT_BASE_URL}"
-fi
-
-if [[ "x${LOCAL_DIR}" == "x" ]]; then
-    LOCAL_DIR="${DEFAULT_LOCAL_DIR}"
-fi
+[[ -z "${BASE_URL}" ]] && BASE_URL="${DEFAULT_BASE_URL}"
+[[ -z "${LOCAL_DIR}" ]] && LOCAL_DIR="${DEFAULT_LOCAL_DIR}"
 
 CALIOPEN_DIR="${LOCAL_DIR}"
 

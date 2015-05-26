@@ -28,6 +28,9 @@ git clone https://github.com/CaliOpen/caliopen-dev.git bin
 ./bin/install
 ```
 
+To customize the toolbelt behavior, you can copy `caliopen.env.tmpl` to
+`caliopen.env` and change values to reflect your setup.
+
 > Note that following dependencies are required:
 >
 > * python

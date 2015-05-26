@@ -15,13 +15,8 @@ DEFAULT_LOCAL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 
 # Set BASE_URL LOCAL_DIR
-if [[ "x${BASE_URL}" == "x" ]]; then
-    BASE_URL="${DEFAULT_BASE_URL}"
-fi
-
-if [[ "x${LOCAL_DIR}" == "x" ]]; then
-    LOCAL_DIR="${DEFAULT_LOCAL_DIR}"
-fi
+[[ -z "${BASE_URL}" ]] && BASE_URL="${DEFAULT_BASE_URL}"
+[[ -z "${LOCAL_DIR}" ]] && LOCAL_DIR="${DEFAULT_LOCAL_DIR}"
 
 CALIOPEN_DIR="${LOCAL_DIR}"
 

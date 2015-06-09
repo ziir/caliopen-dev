@@ -22,11 +22,11 @@ done
 # create and activate venv
 # TODO This should be removed as soon as the service is fully executed through fig.
 command -v virtualenv >/dev/null 2>&1 && VIRTUALENV_CMD="virtualenv"
-[[ -n "${VIRTUALENV_CMD}" ]] || command -v virtualenv2 >/dev/null 2>&1 && VIRTUALENV_CMD="virtualenv2"
+[[ -n "${VIRTUALENV_CMD}" ]] || (command -v virtualenv2 >/dev/null 2>&1 && VIRTUALENV_CMD="virtualenv2")
 command -v pip >/dev/null 2>&1 && PIP_CMD="pip"
-[[ -n "${PIP_CMD}" ]] || command -v pip2 >/dev/null 2>&1 && PIP_CMD="pip2"
+[[ -n "${PIP_CMD}" ]] || (command -v pip2 >/dev/null 2>&1 && PIP_CMD="pip2")
 command -v python >/dev/null 2>&1 && PYTHON_CMD="python"
-[[ -n "${PYTHON_CMD}" ]] || command -v python2 >/dev/null 2>&1 && PYTHON_CMD="python2"
+[[ -n "${PYTHON_CMD}" ]] || (command -v python2 >/dev/null 2>&1 && PYTHON_CMD="python2")
 
 if [[ -n "${VIRTUALENV_CMD}" ]]
 then

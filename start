@@ -7,6 +7,7 @@ DEV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${DEV_DIR}/common.sh"
 
 WEB_DIR="${CALIOPEN_DIR}/web"
+API_DIR="${CALIOPEN_DIR}/api"
 VENV_DIR="${CALIOPEN_DIR}/venv"
 
 echo "Activate virtualenv"
@@ -30,8 +31,12 @@ $COMPOSE_CMD up -d redis cassandra elasticsearch rabbitmq
 echo "Have to wait for cassandra to be up"
 sleep 15
 
+echo "Start HTTP APIs"
+pserve --reload ${API_DIR}/development.ini.sample &
+
 echo "Start server"
-pserve --reload "${CALIOPEN_DIR}/web/development.ini.sample"
+
+DEBUG=caliopen.web:* NODE_ENV=development nodemon ${WEB_DIR}/bin/start --watch ${WEB_DIR}/app
 
 echo "stop containers"
 $COMPOSE_CMD stop

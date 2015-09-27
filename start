@@ -32,7 +32,7 @@ echo "Have to wait for cassandra to be up"
 sleep 15
 
 echo "Start HTTP APIs"
-pserve --reload ${API_DIR}/development.ini.sample &
+pserve --reload ${API_DIR}/development.ini &
 
 echo "Start server"
 
